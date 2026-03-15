@@ -57,7 +57,7 @@ async function main() {
       arrivalTime: '11:00',
       classes: [
         { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
-        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: 'AC_3_ECONOMY' as any, capacity: 10, price: 1790 },
         { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
         { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
         { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
@@ -72,7 +72,7 @@ async function main() {
       arrivalTime: '23:20',
       classes: [
         { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
-        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: 'AC_3_ECONOMY' as any, capacity: 10, price: 1790 },
         { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
         { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
         { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
@@ -87,7 +87,7 @@ async function main() {
       arrivalTime: '09:32',
       classes: [
         { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
-        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: 'AC_3_ECONOMY' as any, capacity: 10, price: 1790 },
         { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
         { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
         { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
@@ -150,7 +150,7 @@ async function main() {
     }
   }
 
-  console.log('✅ 5 Professional Trains with classes seeded successfully');
+  console.log('✅ MAS to HWH trains with classes seeded successfully');
   console.log('--- Seed Process Finished ---');
 }
 
