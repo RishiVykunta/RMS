@@ -118,28 +118,21 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Class & Quota */}
-                <div className="p-6 grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Class</label>
-                    <select 
-                      value={travelClass}
-                      onChange={(e) => setTravelClass(e.target.value)}
-                      className="w-full bg-transparent text-sm font-bold text-gray-900 outline-none appearance-none cursor-pointer"
-                    >
-                      {['All Classes', 'Sleeper', '3AC', '2AC', '1AC'].map(c => <option key={c} value={c}>{c}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Quota</label>
-                    <select 
-                      value={quota}
-                      onChange={(e) => setQuota(e.target.value)}
-                      className="w-full bg-transparent text-sm font-bold text-gray-900 outline-none appearance-none cursor-pointer"
-                    >
-                      {['General', 'Tatkal', 'Ladies', 'Premium Tatkal'].map(q => <option key={q} value={q}>{q}</option>)}
-                    </select>
-                  </div>
+                {/* Class & Quota (Aligned with Database) */}
+                <div className="p-6 md:border-r border-gray-100 md:col-span-2">
+                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Class</label>
+                  <select 
+                    value={travelClass}
+                    onChange={(e) => setTravelClass(e.target.value)}
+                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="All Classes">All Classes</option>
+                    <option value="SLEEPER">Sleeper (SL)</option>
+                    <option value="AC_3_ECONOMY">AC 3 Economy (3E)</option>
+                    <option value="AC_3_TIER">AC 3 Tier (3A)</option>
+                    <option value="AC_2_TIER">AC 2 Tier (2A)</option>
+                    <option value="AC_FIRST_CLASS">AC First Class (1A)</option>
+                  </select>
                 </div>
 
                 {/* Search Button */}

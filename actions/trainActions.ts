@@ -29,17 +29,10 @@ type TrainWithDetails = Prisma.TrainGetPayload<{
 export async function searchTrains(sourceCode: string, destinationCode: string, date: string) {
   const sCode = sourceCode.trim().toUpperCase();
   const dCode = destinationCode.trim().toUpperCase();
-  console.log(`[Search] ${sCode} -> ${dCode} on ${date}`);
+  console.log(`[Search] DEBUG: Starting search for ${sCode} -> ${dCode} on ${date}`);
 
   try {
-    const sourceStation = await prisma.station.findUnique({ where: { stationCode: sCode } });
-    const destinationStation = await prisma.station.findUnique({ where: { stationCode: dCode } });
-
-    if (!sourceStation || !destinationStation) {
-      console.log(`[Search] Station not found: ${!sourceStation ? sCode : ''} ${!destinationStation ? dCode : ''}`);
-      return [];
-    }
-
+    // 1. Broadly find trains that match EITHER by route station codes OR direct fields
     const trains = await (prisma.train as any).findMany({
       where: {
         OR: [
@@ -77,16 +70,13 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
       },
     });
 
-    console.log(`[Search] Found ${trains.length} total trains matching criteria.`);
+    console.log(`[Search] DEBUG: Base trains found count: ${trains.length}`);
 
+    // mapping with simplified logic
     const result = (trains as any[]).map(train => {
-      const sourceRoute = train.routes.find((r: any) => r.stationId === sourceStation.id);
-      const destRoute = train.routes.find((r: any) => r.stationId === destinationStation.id);
+      // For now, if both source and destination exist in the train's record, we show it.
+      // We will calculate availability regardless of stop order for debugging.
       
-      if (!sourceRoute || !destRoute || sourceRoute.stopNumber >= destRoute.stopNumber) {
-        return null;
-      }
-
       const classesWithAvailability = train.classes.map((cls: any) => {
         const classBookingsCount = train.bookings
           .filter((b: any) => b.trainClassId === cls.id)
@@ -102,12 +92,12 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
         ...train,
         classes: classesWithAvailability
       };
-    }).filter(t => t !== null);
+    });
 
-    console.log(`[Search] Returning ${result.length} valid trains.`);
+    console.log(`[Search] DEBUG: Returning ${result.length} trains.`);
     return result;
   } catch (error) {
-    console.error('[Search Error]', error);
+    console.error('[Search Error] DEBUG:', error);
     return [];
   }
 }

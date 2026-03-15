@@ -46,7 +46,19 @@ export default async function SearchResults({
             <div className="text-5xl mb-4">🚆</div>
             <h2 className="text-xl font-bold text-gray-900">No Trains Found</h2>
             <p className="text-gray-500 mt-2">Try searching with a different source or destination.</p>
-            <Link href="/" className="mt-6 inline-block bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold">
+            
+            {/* Temporary Debug Info */}
+            <div className="mt-8 p-4 bg-gray-50 rounded-lg text-left inline-block max-w-md mx-auto">
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 border-b border-gray-200 pb-1">Debug Information</p>
+              <pre className="text-[10px] text-gray-500 font-mono whitespace-pre-wrap">
+                Source: {source}
+                Destination: {destination}
+                Date: {date}
+                Trains Found: {trains.length}
+              </pre>
+            </div>
+
+            <Link href="/" className="mt-8 block w-fit mx-auto bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold">
               Try Another Search
             </Link>
           </div>
