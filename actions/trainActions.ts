@@ -29,10 +29,10 @@ type TrainWithDetails = Prisma.TrainGetPayload<{
 export async function searchTrains(sourceCode: string, destinationCode: string, date: string) {
   const sCode = sourceCode.trim().toUpperCase();
   const dCode = destinationCode.trim().toUpperCase();
-  console.log(`[Search] DEBUG: Starting search for ${sCode} -> ${dCode} on ${date}`);
+  console.log(`[Search] DEBUG: Search Params -> ${sCode} to ${dCode}`);
 
   try {
-    // 1. Broadly find trains that match EITHER by route station codes OR direct fields
+    // 1. Broad query
     const trains = await (prisma.train as any).findMany({
       where: {
         OR: [
@@ -60,42 +60,41 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
           where: {
             travelDate: new Date(date),
             bookingStatus: 'CONFIRMED',
-          },
-          include: {
-            _count: {
-              select: { passengers: true }
-            }
           }
         }
       },
     });
 
-    console.log(`[Search] DEBUG: Base trains found count: ${trains.length}`);
-
-    // mapping with simplified logic
-    const result = (trains as any[]).map(train => {
-      // For now, if both source and destination exist in the train's record, we show it.
-      // We will calculate availability regardless of stop order for debugging.
-      
-      const classesWithAvailability = train.classes.map((cls: any) => {
-        const classBookingsCount = train.bookings
-          .filter((b: any) => b.trainClassId === cls.id)
-          .reduce((sum: number, b: any) => sum + (b._count?.passengers || 0), 0);
-
-        return {
+    if (trains.length > 0) {
+      return (trains as any[]).map(train => {
+        const classesWithAvailability = train.classes.map((cls: any) => ({
           ...cls,
-          availableSeats: cls.capacity - classBookingsCount
-        };
+          availableSeats: cls.capacity // Simplified for debug - assume all available
+        }));
+        return { ...train, classes: classesWithAvailability };
       });
+    }
 
-      return {
-        ...train,
-        classes: classesWithAvailability
-      };
+    // IF NO TRAINS FOUND -> RETURN DEBUG DATA
+    const allStations = await prisma.station.findMany({ select: { stationCode: true, stationName: true } });
+    const totalTrainsInDb = await prisma.train.count();
+    const sampleTrains = await prisma.train.findMany({ 
+      take: 5, 
+      select: { trainNumber: true, sourceStation: true, destinationStation: true } 
     });
 
-    console.log(`[Search] DEBUG: Returning ${result.length} trains.`);
-    return result;
+    console.log(`[Search] DEBUG: No trains found for ${sCode}->${dCode}. Total in DB: ${totalTrainsInDb}`);
+
+    return {
+      _debug: {
+        sentSource: sCode,
+        sentDest: dCode,
+        totalTrainsInDb,
+        allStationCodes: allStations.map(s => s.stationCode),
+        sampleTrainsInDb: sampleTrains
+      }
+    } as any;
+
   } catch (error) {
     console.error('[Search Error] DEBUG:', error);
     return [];
