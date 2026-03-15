@@ -46,70 +46,51 @@ async function main() {
   }
   console.log('✅ Stations ready');
 
-  // 3. Create Trains with Classes
+  // 3. Create Trains with Classes (MAS to HWH)
   const trainsData = [
     {
-      trainNumber: '12951',
-      trainName: 'Rajdhani Express',
-      sourceStation: 'BCT',
-      destinationStation: 'NDLS',
-      departureTime: '16:35',
-      arrivalTime: '08:35',
+      trainNumber: '12842',
+      trainName: 'Coromandel Express',
+      sourceStation: 'MAS',
+      destinationStation: 'HWH',
+      departureTime: '07:00',
+      arrivalTime: '11:00',
       classes: [
-        { type: TrainClassType.AC_FIRST_CLASS, capacity: 18, price: 4500 },
-        { type: TrainClassType.AC_2_TIER, capacity: 48, price: 2800 },
-        { type: TrainClassType.AC_3_TIER, capacity: 64, price: 1900 },
+        { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
+        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
+        { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
+        { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
       ]
     },
     {
-      trainNumber: '12002',
-      trainName: 'Bhopal Shatabdi',
-      sourceStation: 'NDLS',
-      destinationStation: 'RKMP',
-      departureTime: '06:00',
-      arrivalTime: '14:40',
+      trainNumber: '12840',
+      trainName: 'MAS HWH SF Mail',
+      sourceStation: 'MAS',
+      destinationStation: 'HWH',
+      departureTime: '19:00',
+      arrivalTime: '23:20',
       classes: [
-        { type: TrainClassType.AC_FIRST_CLASS, capacity: 56, price: 2200 },
-        { type: TrainClassType.AC_2_TIER, capacity: 78, price: 1400 },
+        { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
+        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
+        { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
+        { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
       ]
     },
     {
-      trainNumber: '12267',
-      trainName: 'Duronto Express',
-      sourceStation: 'HWH',
-      destinationStation: 'SBC',
-      departureTime: '23:10',
-      arrivalTime: '05:55',
+      trainNumber: '15627',
+      trainName: 'CBE SCL Express',
+      sourceStation: 'MAS',
+      destinationStation: 'HWH',
+      departureTime: '05:10',
+      arrivalTime: '09:32',
       classes: [
-        { type: TrainClassType.AC_2_TIER, capacity: 48, price: 3200 },
-        { type: TrainClassType.AC_3_TIER, capacity: 64, price: 2100 },
-        { type: TrainClassType.SLEEPER, capacity: 72, price: 850 },
-      ]
-    },
-    {
-      trainNumber: '12622',
-      trainName: 'Tamil Nadu Express',
-      sourceStation: 'NDLS',
-      destinationStation: 'MAS',
-      departureTime: '21:05',
-      arrivalTime: '06:15',
-      classes: [
-        { type: TrainClassType.AC_2_TIER, capacity: 48, price: 3500 },
-        { type: TrainClassType.AC_3_TIER, capacity: 64, price: 2400 },
-        { type: TrainClassType.SLEEPER, capacity: 72, price: 950 },
-      ]
-    },
-    {
-      trainNumber: '12301',
-      trainName: 'Kolkata Rajdhani',
-      sourceStation: 'HWH',
-      destinationStation: 'NDLS',
-      departureTime: '16:50',
-      arrivalTime: '10:00',
-      classes: [
-        { type: TrainClassType.AC_FIRST_CLASS, capacity: 18, price: 4800 },
-        { type: TrainClassType.AC_2_TIER, capacity: 48, price: 3100 },
-        { type: TrainClassType.AC_3_TIER, capacity: 64, price: 2200 },
+        { type: TrainClassType.SLEEPER, capacity: 10, price: 750 },
+        { type: TrainClassType.AC_3_ECONOMY, capacity: 10, price: 1790 },
+        { type: TrainClassType.AC_3_TIER, capacity: 10, price: 1895 },
+        { type: TrainClassType.AC_2_TIER, capacity: 10, price: 2695 },
+        { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4200 },
       ]
     }
   ];

@@ -24,6 +24,7 @@ enum SeatStatus {
 
 enum TrainClassType {
   SLEEPER
+  AC_3_ECONOMY
   AC_3_TIER
   AC_2_TIER
   AC_FIRST_CLASS
