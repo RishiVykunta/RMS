@@ -42,9 +42,19 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
 
     const trains = await (prisma.train as any).findMany({
       where: {
-        AND: [
-          { routes: { some: { stationId: sourceStation.id } } },
-          { routes: { some: { stationId: destinationStation.id } } }
+        OR: [
+          {
+            AND: [
+              { routes: { some: { station: { stationCode: sCode } } } },
+              { routes: { some: { station: { stationCode: dCode } } } }
+            ]
+          },
+          {
+            AND: [
+              { sourceStation: sCode },
+              { destinationStation: dCode }
+            ]
+          }
         ]
       },
       include: {
@@ -67,7 +77,7 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
       },
     });
 
-    console.log(`[Search] Found ${trains.length} base trains.`);
+    console.log(`[Search] Found ${trains.length} total trains matching criteria.`);
 
     const result = (trains as any[]).map(train => {
       const sourceRoute = train.routes.find((r: any) => r.stationId === sourceStation.id);

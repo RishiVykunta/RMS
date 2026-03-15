@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { searchTrains } from '@/actions/trainActions';
 import TrainCard from '@/components/TrainCard';
 import Link from 'next/link';
