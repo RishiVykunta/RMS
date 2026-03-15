@@ -1,10 +1,8 @@
-'use client';
-
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { createBooking } from '@/actions/bookingActions';
 import { useSearchParams } from 'next/navigation';
 
-export default function BookingPage() {
+function BookingContent() {
   const searchParams = useSearchParams();
   const trainId = searchParams.get('trainId');
   const classId = searchParams.get('classId');
@@ -125,5 +123,13 @@ export default function BookingPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookingContent />
+    </Suspense>
   );
 }
