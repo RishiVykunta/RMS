@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, Suspense } from 'react';
 import { createBooking } from '@/actions/bookingActions';
 import { useSearchParams } from 'next/navigation';
