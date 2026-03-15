@@ -47,31 +47,34 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative pt-12 pb-32 overflow-hidden bg-white">
+      <section className="relative pt-12 pb-32 overflow-hidden bg-slate-50">
         {/* Background Accent */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-brand/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight mb-4">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight mb-6">
               Where to <span className="text-brand">next?</span>
             </h1>
-            <p className="text-xl text-gray-500 font-medium">Book your train tickets with RailConnect — fast, secure, and easy.</p>
+            <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto">Book your train tickets with RailConnect — fast, secure, and premium experience guaranteed.</p>
           </div>
 
           {/* Elevated Booking Card */}
           <div className="max-w-6xl mx-auto">
-            <div className="bg-white rounded-[2.5rem] shadow-premium border border-gray-100 p-2 md:p-3">
-              <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-0 cursor-default">
+            <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-white p-3 md:p-4">
+              <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-2 cursor-default">
                 
                 {/* From Station */}
-                <div className="p-6 md:border-r border-gray-100 group relative">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">From Station</label>
+                <div className="p-6 md:border-r border-gray-100 group relative bg-gray-50/50 rounded-2xl md:rounded-r-none">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">From Station</label>
+                  </div>
                   <select 
                     value={source}
                     onChange={(e) => setSource(e.target.value)}
-                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer"
+                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer focus:text-brand transition-colors"
                     required
                   >
                     <option value="">Select Station</option>
@@ -83,19 +86,22 @@ export default function Home() {
                   <button 
                     type="button"
                     onClick={swapStations}
-                    className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all invisible md:visible"
+                    className="absolute -right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-gray-100 shadow-lg flex items-center justify-center hover:bg-brand hover:text-white hover:border-brand transition-all invisible md:visible group-hover:scale-110 active:scale-95"
                   >
-                    <span className="text-xs">⇄</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
                   </button>
                 </div>
 
                 {/* To Station */}
-                <div className="p-6 md:border-r border-gray-100 group">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">To Station</label>
+                <div className="p-6 md:border-r border-gray-100 group bg-gray-50/50 rounded-2xl md:rounded-none">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">To Station</label>
+                  </div>
                   <select 
                     value={destination}
                     onChange={(e) => setDestination(e.target.value)}
-                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer"
+                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer focus:text-brand transition-colors"
                     required
                   >
                     <option value="">Select Station</option>
@@ -106,25 +112,31 @@ export default function Home() {
                 </div>
 
                 {/* Date */}
-                <div className="p-6 md:border-r border-gray-100">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Travel Date</label>
+                <div className="p-6 md:border-r border-gray-100 group bg-gray-50/50 rounded-2xl md:rounded-none">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Travel Date</label>
+                  </div>
                   <input 
                     type="date" 
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     min={new Date().toISOString().split('T')[0]}
-                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none cursor-pointer"
+                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none cursor-pointer focus:text-brand transition-colors"
                     required
                   />
                 </div>
 
-                {/* Class & Quota (Aligned with Database) */}
-                <div className="p-6 md:border-r border-gray-100 md:col-span-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block mb-2 px-1">Class</label>
+                {/* Class & Quota */}
+                <div className="p-6 md:border-r border-gray-100 md:col-span-1 group bg-gray-50/50 rounded-2xl md:rounded-none">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest block px-1">Class</label>
+                  </div>
                   <select 
                     value={travelClass}
                     onChange={(e) => setTravelClass(e.target.value)}
-                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer"
+                    className="w-full bg-transparent text-lg font-bold text-gray-900 outline-none appearance-none cursor-pointer focus:text-brand transition-colors"
                   >
                     <option value="All Classes">All Classes</option>
                     <option value="SLEEPER">Sleeper (SL)</option>
@@ -136,14 +148,14 @@ export default function Home() {
                 </div>
 
                 {/* Search Button */}
-                <div className="p-2">
+                <div className="p-2 flex items-center h-full">
                   <button 
                     type="submit"
-                    className="w-full h-full bg-brand text-white font-black rounded-[1.8rem] hover:bg-brand-hover shadow-lg shadow-brand/30 transition-all transform hover:scale-[1.02] flex items-center justify-center space-x-2 text-xl"
+                    className="w-full h-16 md:h-full bg-brand text-white font-black rounded-2xl hover:bg-brand-hover shadow-[0_10px_25px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center space-x-2 text-xl"
                   >
-                    <span className="hidden xl:inline">Search Trains</span>
-                    <span className="xl:hidden">Search</span>
-                    <span>→</span>
+                    <span className="hidden lg:inline">Search Trains</span>
+                    <span className="lg:hidden">Search</span>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                   </button>
                 </div>
 
