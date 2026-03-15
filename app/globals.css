@@ -7,11 +7,11 @@
   --color-brand: #10b981; /* Emerald 500 */
   --color-brand-hover: #059669; /* Emerald 600 */
   --color-accent: #facc15; /* Yellow 400 */
-  --color-bg-base: #f6f7fb;
+  --color-bg-base: #fdfbf7;
 }
 
 :root {
-  --background: #f6f7fb;
+  --background: #fdfbf7;
   --foreground: #1a1a1a;
   --card: #ffffff;
   --card-foreground: #1a1a1a;
