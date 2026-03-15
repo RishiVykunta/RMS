@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { getSession } from "@/lib/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +21,23 @@ export const metadata: Metadata = {
   description: "Book your train tickets with ease and speed.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession();
+  const user = (session as any)?.user || null;
+
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen flex flex-col pt-20`}>
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
-          {children}
+          <Navbar user={user} />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
         </GoogleOAuthProvider>
       </body>
     </html>
