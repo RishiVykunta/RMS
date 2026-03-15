@@ -94,6 +94,10 @@ model Route {
   stopNumber    Int
   arrivalTime   String
   departureTime String
+  stopDuration  String?   // New: e.g., "5min"
+  distance      String?   // New: e.g., "101 km"
+  platform      String?   // New: e.g., "1"
+  day           Int       @default(1) // New: Day of journey
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 

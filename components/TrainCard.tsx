@@ -54,21 +54,36 @@ export default function TrainCard({ train, date }: { train: any; date: string })
 
         {/* Schedule View (Conditional) */}
         {showSchedule && (
-          <div className="mb-6 bg-gray-50 rounded-xl p-4 border border-gray-100 animate-in fade-in slide-in-from-top-2 duration-300">
-            <h4 className="text-xs font-bold text-gray-400 uppercase mb-3 tracking-widest pl-2">Train Schedule</h4>
-            <div className="space-y-3">
-              {train.routes.map((route: any, idx: number) => (
-                <div key={route.id} className="flex items-center gap-4 text-sm">
-                  <div className="w-8 flex flex-col items-center">
-                    <div className={`w-2 h-2 rounded-full ${idx === 0 || idx === train.routes.length - 1 ? 'bg-indigo-600' : 'bg-gray-300'}`}></div>
-                    {idx < train.routes.length - 1 && <div className="w-0.5 h-6 bg-gray-200"></div>}
-                  </div>
-                  <div className="flex-1 flex justify-between items-center pr-4">
-                    <span className="font-bold text-gray-700">{route.station.stationName} ({route.station.stationCode})</span>
-                    <span className="text-gray-500 font-mono">{route.arrivalTime} | {route.departureTime}</span>
-                  </div>
-                </div>
-              ))}
+          <div className="mb-6 bg-gray-50 rounded-xl overflow-hidden border border-gray-100 animate-in fade-in slide-in-from-top-2 duration-300">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-gray-100/80 text-gray-500 font-bold uppercase tracking-wider">
+                  <tr>
+                    <th className="px-4 py-3">Stn Code</th>
+                    <th className="px-4 py-3">Stn Name</th>
+                    <th className="px-4 py-3">Arrives</th>
+                    <th className="px-4 py-3">Departs</th>
+                    <th className="px-4 py-3">Stop time</th>
+                    <th className="px-4 py-3">Distance</th>
+                    <th className="px-4 py-3">Platform</th>
+                    <th className="px-4 py-3">Day</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {train.routes.sort((a: any, b: any) => a.stopNumber - b.stopNumber).map((route: any) => (
+                    <tr key={route.id} className="hover:bg-white transition-colors">
+                      <td className="px-4 py-3 font-mono font-bold text-indigo-600">{route.station.stationCode}</td>
+                      <td className="px-4 py-3 font-bold text-gray-700">{route.station.stationName}</td>
+                      <td className="px-4 py-3 text-gray-600">{route.arrivalTime}</td>
+                      <td className="px-4 py-3 text-gray-600">{route.departureTime}</td>
+                      <td className="px-4 py-3 text-gray-500">{route.stopDuration || '-'}</td>
+                      <td className="px-4 py-3 text-gray-500">{route.distance || '-'}</td>
+                      <td className="px-4 py-3 text-gray-500">{route.platform || '-'}</td>
+                      <td className="px-4 py-3 font-bold text-gray-900">{route.day}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
