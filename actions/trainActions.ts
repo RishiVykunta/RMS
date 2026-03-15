@@ -27,75 +27,77 @@ type TrainWithDetails = Prisma.TrainGetPayload<{
 }>;
 
 export async function searchTrains(sourceCode: string, destinationCode: string, date: string) {
-  console.log(`[Search] Searching for ${sourceCode} -> ${destinationCode} on ${date}`);
+  const sCode = sourceCode.trim().toUpperCase();
+  const dCode = destinationCode.trim().toUpperCase();
+  console.log(`[Search] ${sCode} -> ${dCode} on ${date}`);
 
-  // 1. Find the source and destination station IDs
-  const sourceStation = await prisma.station.findUnique({ where: { stationCode: sourceCode } });
-  const destinationStation = await prisma.station.findUnique({ where: { stationCode: destinationCode } });
+  try {
+    const sourceStation = await prisma.station.findUnique({ where: { stationCode: sCode } });
+    const destinationStation = await prisma.station.findUnique({ where: { stationCode: dCode } });
 
-  if (!sourceStation || !destinationStation) {
-    console.log(`[Search] Station not found. Source: ${sourceCode}, Dest: ${destinationCode}`);
-    return [];
-  }
+    if (!sourceStation || !destinationStation) {
+      console.log(`[Search] Station not found: ${!sourceStation ? sCode : ''} ${!destinationStation ? dCode : ''}`);
+      return [];
+    }
 
-  // 2. Find trains that pass through BOTH stations
-  const trains = await prisma.train.findMany({
-    where: {
-      AND: [
-        { routes: { some: { stationId: sourceStation.id } } },
-        { routes: { some: { stationId: destinationStation.id } } }
-      ]
-    },
-    include: {
-      classes: true,
-      routes: {
-        include: { station: true },
-        orderBy: { stopNumber: 'asc' },
+    const trains = await (prisma.train as any).findMany({
+      where: {
+        AND: [
+          { routes: { some: { stationId: sourceStation.id } } },
+          { routes: { some: { stationId: destinationStation.id } } }
+        ]
       },
-      bookings: {
-        where: {
-          travelDate: new Date(date),
-          bookingStatus: 'CONFIRMED',
+      include: {
+        classes: true,
+        routes: {
+          include: { station: true },
+          orderBy: { stopNumber: 'asc' },
         },
-        include: {
-          _count: {
-            select: { passengers: true }
+        bookings: {
+          where: {
+            travelDate: new Date(date),
+            bookingStatus: 'CONFIRMED',
+          },
+          include: {
+            _count: {
+              select: { passengers: true }
+            }
           }
         }
-      }
-    },
-  });
-
-  const typedTrains = trains as unknown as TrainWithDetails[];
-
-  console.log(`[Search] Found ${typedTrains.length} trains matching route.`);
-
-  // 3. Map trains to include calculated availability
-  const result = typedTrains.map(train => {
-    // Check if source stop is before destination stop
-    const sourceStop = train.routes.find(r => r.stationId === sourceStation.id)?.stopNumber || 0;
-    const destStop = train.routes.find(r => r.stationId === destinationStation.id)?.stopNumber || 0;
-    
-    // Only return if train is going in the right direction
-    if (sourceStop >= destStop) return null;
-
-    const classesWithAvailability = train.classes.map(cls => {
-      const classBookingsCount = train.bookings
-        .filter(b => (b as any).trainClassId === cls.id)
-        .reduce((sum: number, b) => sum + (b._count?.passengers || 0), 0);
-
-      return {
-        ...cls,
-        availableSeats: cls.capacity - classBookingsCount
-      };
+      },
     });
 
-    return {
-      ...train,
-      classes: classesWithAvailability
-    };
-  }).filter((t): t is NonNullable<typeof t> => t !== null);
+    console.log(`[Search] Found ${trains.length} base trains.`);
 
-  console.log(`[Search] returning ${result.length} trains after direction check.`);
-  return result;
+    const result = (trains as any[]).map(train => {
+      const sourceRoute = train.routes.find((r: any) => r.stationId === sourceStation.id);
+      const destRoute = train.routes.find((r: any) => r.stationId === destinationStation.id);
+      
+      if (!sourceRoute || !destRoute || sourceRoute.stopNumber >= destRoute.stopNumber) {
+        return null;
+      }
+
+      const classesWithAvailability = train.classes.map((cls: any) => {
+        const classBookingsCount = train.bookings
+          .filter((b: any) => b.trainClassId === cls.id)
+          .reduce((sum: number, b: any) => sum + (b._count?.passengers || 0), 0);
+
+        return {
+          ...cls,
+          availableSeats: cls.capacity - classBookingsCount
+        };
+      });
+
+      return {
+        ...train,
+        classes: classesWithAvailability
+      };
+    }).filter(t => t !== null);
+
+    console.log(`[Search] Returning ${result.length} valid trains.`);
+    return result;
+  } catch (error) {
+    console.error('[Search Error]', error);
+    return [];
+  }
 }
