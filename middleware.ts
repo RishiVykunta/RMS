@@ -22,8 +22,9 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/', req.nextUrl));
   }
 
-  // 3. Redirect to dashboard if logged in and trying to access login/register
-  if ((path === '/login' || path === '/register') && decoded) {
+  // 3. Redirect to dashboard if logged in and trying to access auth-related routes
+  const authRoutes = ['/login', '/register', '/verify-email', '/forgot-password', '/reset-password'];
+  if (authRoutes.includes(path) && decoded) {
     return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
   }
 

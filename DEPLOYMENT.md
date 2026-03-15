@@ -17,9 +17,45 @@ This guide covers the steps required to deploy the Railway Reservation System (R
 ## 2. Vercel Deployment
 
 1.  **Import Project**: Push your code to GitHub and import it into Vercel.
-2.  **Environment Variables**: Add the following in the Vercel project settings:
-    - `DATABASE_URL`: Your Neon connection string.
-    - `JWT_SECRET`: A strong random string for session encryption.
+### 3. Environment Variables
+
+Add these to your **Vercel Project Settings > Environment Variables**:
+
+| Variable | Value / How to Find |
+| :--- | :--- |
+| `DATABASE_URL` | From Neon Console (Connection String) |
+| `JWT_SECRET` | Any long random string (e.g., `openssl rand -base64 32`) |
+| `RESEND_API_KEY` | Create at [resend.com/api-keys](https://resend.com/api-keys) |
+| `NEXT_PUBLIC_APP_URL` | Your Vercel URL (e.g., `https://rms-sable.vercel.app`) |
+| `NEXT_PUBLIC_GOOGLE_CLIENT_ID` | From [Google Cloud Console](https://console.cloud.google.com/) |
+
+---
+
+## How to find/get these keys:
+
+### 1. Resend API Key (for Emails)
+1. Go to [Resend.com](https://resend.com) and create an account.
+2. Click on **API Keys** in the sidebar.
+3. Click **Create API Key**.
+4. Name it "RMS" and give it "Full Access".
+5. Copy the key (starts with `re_`).
+
+### 2. Google Client ID (for Google Sign-In)
+1. Go to [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project named "RMS".
+3. Go to **APIs & Services > OAuth consent screen**.
+4. Choose "External" and fill in the required app information (app name, email).
+5. Go to **Credentials > Create Credentials > OAuth client ID**.
+6. Select **Web application**.
+7. Under **Authorized JavaScript origins**, add:
+   - `http://localhost:3000`
+   - `https://your-app.vercel.app` (Replace with your actual Vercel URL)
+8. Under **Authorized redirect URIs**, add the same URLs.
+9. Click **Create** and copy the **Client ID**.
+
+---
+
+## Final Steps
 3.  **Build Settings**: The project is already configured to run `prisma generate && next build`.
 
 ## 3. Initial Database Setup & Seeding

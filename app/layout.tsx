@@ -1,36 +1,34 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { getSession } from "@/lib/auth";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const inter = Inter({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  variable: "--font-inter",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "RailConnect | Professional Railway Reservations",
-  description: "Modern railway reservation system providing a seamless travel experience.",
+  title: "RailConnect | Modern Railway Management",
+  description: "Book your train tickets with ease and speed.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getSession();
-  const user = session?.user || null;
-
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased text-gray-900 min-h-screen flex flex-col pt-20`}>
-        <Navbar user={user} />
-        <main className="flex-grow">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
           {children}
-        </main>
-        <Footer />
+        </GoogleOAuthProvider>
       </body>
     </html>
   );
