@@ -47,7 +47,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative pt-12 pb-32 overflow-hidden bg-transparent">
+      <section className="relative pt-12 pb-32 overflow-hidden bg-white">
         {/* Background Accent */}
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-brand/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
@@ -166,7 +166,7 @@ export default function Home() {
       </section>
 
       {/* Quick Tools Section */}
-      <section className="bg-[#f9f6e5]/50 py-24 -mt-16 relative z-10 rounded-t-[5rem]">
+      <section className="bg-gray-50 py-24 -mt-16 relative z-10 rounded-t-[5rem]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
             {quickTools.map((tool) => (
@@ -201,7 +201,7 @@ export default function Home() {
       </section>
 
       {/* Popular Trains Section */}
-      <section className="py-24 bg-[#f9f6e5]/50">
+      <section className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
