@@ -79,9 +79,15 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6">Support</h3>
             <ul className="space-y-4">
-              {['Help Center', 'Cancellation Policy', 'Terms of Service', 'Privacy Policy', 'Trust & Safety'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-gray-500 hover:text-brand text-sm transition-colors">{item}</Link>
+              {[
+                { name: 'Help Center', href: '/support' },
+                { name: 'Cancellation Policy', href: '/support#faq' },
+                { name: 'Terms of Service', href: '/support#terms' },
+                { name: 'Privacy Policy', href: '/support#privacy' },
+                { name: 'Trust & Safety', href: '/support#safety' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-gray-500 hover:text-brand text-sm transition-colors">{item.name}</Link>
                 </li>
               ))}
             </ul>
@@ -90,9 +96,15 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6">Services</h3>
             <ul className="space-y-4">
-              {['Train Booking', 'PNR Status', 'Seat Availability', 'Train Schedule', 'Running Status'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-gray-500 hover:text-brand text-sm transition-colors">{item}</Link>
+              {[
+                { name: 'Train Booking', href: '/search?source=NDLS&destination=MMCT&date=2024-12-01&class=All+Classes' },
+                { name: 'PNR Status', href: '/pnr-status' },
+                { name: 'Seat Availability', href: '/seat-availability' },
+                { name: 'Train Schedule', href: '/train-schedule' },
+                { name: 'Running Status', href: '/running-status' }
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href} className="text-gray-500 hover:text-brand text-sm transition-colors">{item.name}</Link>
                 </li>
               ))}
             </ul>
