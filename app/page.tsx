@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getStations } from '@/actions/trainActions';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Home() {
   const [stations, setStations] = useState<any[]>([]);
@@ -170,13 +171,17 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
             {quickTools.map((tool) => (
-              <div key={tool.title} className="bg-white p-6 rounded-[2rem] shadow-premium shadow-hover cursor-pointer border border-transparent hover:border-brand/10 group">
+              <Link 
+                href={tool.title === 'PNR Status' ? '/pnr-status' : '#'} 
+                key={tool.title} 
+                className="bg-white p-6 rounded-[2rem] shadow-premium shadow-hover cursor-pointer border border-transparent hover:border-brand/10 group"
+              >
                 <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                   {tool.icon}
                 </div>
                 <h3 className="font-bold text-gray-900 text-sm mb-2">{tool.title}</h3>
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{tool.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
