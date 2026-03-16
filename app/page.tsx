@@ -250,7 +250,7 @@ export default function Home() {
       {/* Promotional Banner */}
       <section id="offers" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-brand via-brand-hover to-emerald-900 rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl group transition-all duration-500 hover:shadow-brand/30">
+          <div className="bg-gradient-to-br from-brand to-accent rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl group transition-all duration-500 hover:shadow-brand/30">
             {/* Animated Background Elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:scale-150 transition-transform duration-700" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4 group-hover:scale-150 transition-transform duration-700" />
