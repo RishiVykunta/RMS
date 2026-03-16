@@ -97,11 +97,11 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6">Services</h3>
             <ul className="space-y-4">
               {[
-                { name: 'Train Booking', href: '/' },
-                { name: 'PNR Status', href: '#' },
-                { name: 'Seat Availability', href: '#' },
-                { name: 'Train Schedule', href: '#' },
-                { name: 'Running Status', href: '#' }
+                { name: 'Train Booking', href: '/#top' },
+                { name: 'PNR Status', href: '/pnr-status' },
+                { name: 'Seat Availability', href: '/seat-availability' },
+                { name: 'Train Schedule', href: '/train-schedule' },
+                { name: 'Running Status', href: '/running-status' }
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-gray-500 hover:text-brand text-sm transition-colors">{item.name}</Link>
