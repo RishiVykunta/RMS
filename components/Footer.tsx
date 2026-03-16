@@ -80,11 +80,11 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6">Support</h3>
             <ul className="space-y-4">
               {[
-                { name: 'Help Center', href: '/support' },
-                { name: 'Cancellation Policy', href: '/support#faq' },
-                { name: 'Terms of Service', href: '/support#terms' },
-                { name: 'Privacy Policy', href: '/support#privacy' },
-                { name: 'Trust & Safety', href: '/support#safety' }
+                { name: 'Help Center', href: '#' },
+                { name: 'Cancellation Policy', href: '#' },
+                { name: 'Terms of Service', href: '#' },
+                { name: 'Privacy Policy', href: '#' },
+                { name: 'Trust & Safety', href: '#' }
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-gray-500 hover:text-brand text-sm transition-colors">{item.name}</Link>
@@ -97,11 +97,11 @@ export default function Footer() {
             <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6">Services</h3>
             <ul className="space-y-4">
               {[
-                { name: 'Train Booking', href: '/search?source=NDLS&destination=MMCT&date=2024-12-01&class=All+Classes' },
-                { name: 'PNR Status', href: '/pnr-status' },
-                { name: 'Seat Availability', href: '/seat-availability' },
-                { name: 'Train Schedule', href: '/train-schedule' },
-                { name: 'Running Status', href: '/running-status' }
+                { name: 'Train Booking', href: '/' },
+                { name: 'PNR Status', href: '#' },
+                { name: 'Seat Availability', href: '#' },
+                { name: 'Train Schedule', href: '#' },
+                { name: 'Running Status', href: '#' }
               ].map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-gray-500 hover:text-brand text-sm transition-colors">{item.name}</Link>

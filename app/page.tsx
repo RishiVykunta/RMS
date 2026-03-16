@@ -266,7 +266,7 @@ export default function Home() {
                 Book your first 3 train tickets with RailConnect and pay ₹0 in payment gateway fees. Save big on every journey this season.
               </p>
               <Link 
-                href="/#booking-area" 
+                href="/" 
                 className="bg-white text-brand px-10 py-5 rounded-full font-black hover:bg-gray-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] transform hover:-translate-y-1 flex items-center gap-3 group/btn"
               >
                 <span>Book Now & Save</span>

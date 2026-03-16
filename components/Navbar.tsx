@@ -16,10 +16,7 @@ export default function Navbar({ user }: { user: any }) {
   }, []);
 
   const navLinks = [
-    { name: 'Trains', href: '/#booking-area' },
-    { name: 'PNR Status', href: '/pnr-status' },
-    { name: 'Running Status', href: '/running-status' },
-    { name: 'Seat Availability', href: '/seat-availability' },
+    { name: 'Trains', href: '/' },
   ];
 
   return (
@@ -48,7 +45,6 @@ export default function Navbar({ user }: { user: any }) {
           <div className="flex items-center space-x-4">
             <div className="hidden md:flex items-center space-x-4 mr-4 text-sm font-medium text-gray-500 border-r border-gray-100 pr-6">
               <Link href="/#offers" className="hover:text-brand transition-colors">Offers</Link>
-              <Link href="/support" className={`hover:text-brand transition-colors ${pathname === '/support' ? 'text-brand' : ''}`}>Support</Link>
             </div>
 
             {user ? (
