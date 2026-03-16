@@ -80,9 +80,9 @@ export default function PlatformLocatorPage() {
             <p className="text-sm font-bold text-brand uppercase tracking-widest mb-2">{result.trainName}</p>
             <h2 className="text-2xl font-black text-gray-900 mb-6">Arriving at {result.stationName}</h2>
             
-            <div className="inline-flex flex-col items-center justify-center bg-white w-40 h-40 rounded-full shadow-xl shadow-brand/10 border border-brand/10 mb-4 p-4 text-center">
-              <span className="text-sm font-black text-gray-400 uppercase tracking-widest block mb-2">Platform</span>
-              <span className="text-6xl font-black text-brand tracking-normal leading-none bg-clip-text text-transparent bg-gradient-to-br from-brand to-brand-hover">{result.platform}</span>
+            <div className="inline-flex flex-col items-center justify-center bg-white rounded-[3rem] shadow-xl shadow-brand/10 border border-brand/10 mb-4 px-12 py-8 text-center min-w-[200px]">
+              <span className="text-sm font-black text-gray-400 uppercase tracking-widest block mb-1">Platform</span>
+              <span className="text-8xl font-black text-brand tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-br from-brand to-brand-hover">{result.platform}</span>
             </div>
           </div>
         )}

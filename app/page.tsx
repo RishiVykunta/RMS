@@ -248,18 +248,30 @@ export default function Home() {
       </section>
 
       {/* Promotional Banner */}
-      <section className="py-20 bg-white">
+      <section id="offers" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-brand to-accent rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 p-8 text-8xl opacity-10 font-black text-white">OFFER</div>
-            <div className="relative z-10 max-w-2xl">
-              <h2 className="text-4xl font-black mb-6">Alternate Travel Plan</h2>
-              <p className="text-lg opacity-90 mb-8 font-medium">
-                If your ticket remains waitlisted, get alternate train suggestions and increase your chances of confirmed seats.
+          <div className="bg-gradient-to-br from-brand via-brand-hover to-emerald-900 rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl group transition-all duration-500 hover:shadow-brand/30">
+            {/* Animated Background Elements */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 group-hover:scale-150 transition-transform duration-700" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent/20 rounded-full blur-2xl translate-y-1/3 -translate-x-1/4 group-hover:scale-150 transition-transform duration-700" />
+            
+            <div className="absolute top-0 right-0 p-8 text-8xl opacity-5 font-black text-white select-none pointer-events-none transform rotate-[-5deg] group-hover:rotate-0 transition-all duration-500">OFFER</div>
+            
+            <div className="relative z-10 max-w-2xl flex flex-col items-start">
+              <div className="bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-6 border border-white/20">
+                Waitlist Protection
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Secure Your Journey with Alternate Plans</h2>
+              <p className="text-lg opacity-90 mb-10 font-medium max-w-xl">
+                If your primary ticket remains waitlisted, our smart algorithm provides instant alternate train suggestions to maximize your chances of a confirmed seat.
               </p>
-              <button className="bg-white text-brand px-10 py-4 rounded-full font-black hover:bg-gray-50 transition-all shadow-xl shadow-brand/20">
-                Explore More
-              </button>
+              <Link 
+                href="/search?source=NDLS&destination=MMCT&date=2024-12-01&class=All+Classes" 
+                className="bg-white text-brand px-10 py-5 rounded-full font-black hover:bg-gray-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] transform hover:-translate-y-1 flex items-center gap-3 group/btn"
+              >
+                <span>Find Alternate Trains</span>
+                <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </Link>
             </div>
           </div>
         </div>
