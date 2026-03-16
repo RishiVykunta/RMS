@@ -111,7 +111,7 @@ export default function Home() {
           </div>
 
           {/* Elevated Booking Card */}
-          <div className="max-w-6xl mx-auto">
+          <div id="booking-area" className="max-w-6xl mx-auto">
             <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-white p-3 md:p-4">
               <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-2 cursor-default">
                 
@@ -266,7 +266,7 @@ export default function Home() {
                 Book your first 3 train tickets with RailConnect and pay ₹0 in payment gateway fees. Save big on every journey this season.
               </p>
               <Link 
-                href="/search?source=NDLS&destination=MMCT&date=2024-12-01&class=All+Classes" 
+                href="/#booking-area" 
                 className="bg-white text-brand px-10 py-5 rounded-full font-black hover:bg-gray-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] transform hover:-translate-y-1 flex items-center gap-3 group/btn"
               >
                 <span>Book Now & Save</span>
