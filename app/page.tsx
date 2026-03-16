@@ -259,17 +259,17 @@ export default function Home() {
             
             <div className="relative z-10 max-w-2xl flex flex-col items-start">
               <div className="bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase mb-6 border border-white/20">
-                Waitlist Protection
+                Exclusive Deal
               </div>
-              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Secure Your Journey with Alternate Plans</h2>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">Enjoy Zero Transaction Fees</h2>
               <p className="text-lg opacity-90 mb-10 font-medium max-w-xl">
-                If your primary ticket remains waitlisted, our smart algorithm provides instant alternate train suggestions to maximize your chances of a confirmed seat.
+                Book your first 3 train tickets with RailConnect and pay ₹0 in payment gateway fees. Save big on every journey this season.
               </p>
               <Link 
                 href="/search?source=NDLS&destination=MMCT&date=2024-12-01&class=All+Classes" 
                 className="bg-white text-brand px-10 py-5 rounded-full font-black hover:bg-gray-50 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_rgba(255,255,255,0.5)] transform hover:-translate-y-1 flex items-center gap-3 group/btn"
               >
-                <span>Find Alternate Trains</span>
+                <span>Book Now & Save</span>
                 <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </Link>
             </div>
