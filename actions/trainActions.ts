@@ -109,6 +109,8 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
       return { 
         ...train, 
         classes: classesWithAdjustedPrices,
+        sourceStation: sCode,
+        destinationStation: dCode,
         departureTime: sourceRoute.departureTime,
         arrivalTime: destRoute.arrivalTime,
         journeyDistance: `${journeyDist} km`
