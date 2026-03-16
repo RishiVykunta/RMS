@@ -14,9 +14,48 @@ export default function Footer() {
               Modern railway reservation system providing a seamless travel experience. Built with love for real travelers.
             </p>
             <div className="mt-6 flex space-x-4">
-              {['𝕏', 'f', '📸', 'in'].map((social, i) => (
-                <div key={i} className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white cursor-pointer transition-all">
-                  <span className="text-xs">{social}</span>
+              {[
+                { 
+                  name: 'X', 
+                  color: 'hover:bg-black', 
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153zM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644z" />
+                    </svg>
+                  )
+                },
+                { 
+                  name: 'Facebook', 
+                  color: 'hover:bg-[#1877F2]', 
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                  )
+                },
+                { 
+                  name: 'Instagram', 
+                  color: 'hover:bg-[#E4405F]', 
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  )
+                },
+                { 
+                  name: 'LinkedIn', 
+                  color: 'hover:bg-[#0077B5]', 
+                  icon: (
+                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
+                    </svg>
+                  )
+                },
+              ].map((social, i) => (
+                <div key={i} className={`w-9 h-9 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400 ${social.color} hover:text-white cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 border border-gray-100`}>
+                  {social.icon}
                 </div>
               ))}
             </div>
