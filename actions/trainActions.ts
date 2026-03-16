@@ -32,22 +32,11 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
   console.log(`[Search] DEBUG: Search Params -> ${sCode} to ${dCode}`);
 
   try {
-    // 1. Broad query
-    const trains = await (prisma.train as any).findMany({
+    const trains = await prisma.train.findMany({
       where: {
-        OR: [
-          {
-            AND: [
-              { routes: { some: { station: { stationCode: sCode } } } },
-              { routes: { some: { station: { stationCode: dCode } } } }
-            ]
-          },
-          {
-            AND: [
-              { sourceStation: sCode },
-              { destinationStation: dCode }
-            ]
-          }
+        AND: [
+          { routes: { some: { station: { stationCode: sCode } } } },
+          { routes: { some: { station: { stationCode: dCode } } } }
         ]
       },
       include: {
@@ -65,14 +54,69 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
       },
     });
 
-    if (trains.length > 0) {
-      return (trains as any[]).map(train => {
-        const classesWithAvailability = train.classes.map((cls: any) => ({
+    const results = (trains as any[]).filter(train => {
+      const sourceRoute = train.routes.find((r: any) => r.station.stationCode === sCode);
+      const destRoute = train.routes.find((r: any) => r.station.stationCode === dCode);
+      
+      return sourceRoute && destRoute && sourceRoute.stopNumber < destRoute.stopNumber;
+    }).map(train => {
+      const sourceRoute = train.routes.find((r: any) => r.station.stationCode === sCode)!;
+      const destRoute = train.routes.find((r: any) => r.station.stationCode === dCode)!;
+
+      // Helper to parse distance strings like "101 km" or "0"
+      const parseDist = (d: string | null) => d ? parseFloat(d.replace(/[^\d.]/g, '')) || 0 : 0;
+      
+      const startDist = parseDist(sourceRoute.distance);
+      const endDist = parseDist(destRoute.distance);
+      const journeyDist = endDist - startDist;
+      
+      // Total distance of the train (last stop)
+      const totalDist = parseDist(train.routes[train.routes.length - 1].distance) || 1; 
+
+      const classesWithAdjustedPrices = train.classes.map((cls: any) => {
+        // Calculate price based on distance and class type
+        let costPerKm = 0;
+        switch (cls.type) {
+          case 'SLEEPER': 
+            costPerKm = 0.35; // 2S
+            break;
+          case 'AC_3_ECONOMY': 
+            costPerKm = 0.55; // 3E
+            break;
+          case 'AC_3_TIER': 
+            costPerKm = 1.30; // 3A
+            break;
+          case 'AC_2_TIER': 
+            costPerKm = 1.95; // 2A
+            break;
+          case 'AC_FIRST_CLASS': 
+            costPerKm = 4.00; // 1A
+            break;
+          default: 
+            costPerKm = 1.0; 
+            break;
+        }
+
+        const adjustedPrice = Math.round(journeyDist * costPerKm);
+
+        return {
           ...cls,
-          availableSeats: cls.capacity // Simplified for debug - assume all available
-        }));
-        return { ...train, classes: classesWithAvailability };
+          price: adjustedPrice > 0 ? adjustedPrice : cls.price, // Fallback if distance math fails
+          availableSeats: cls.capacity // Simplified
+        };
       });
+
+      return { 
+        ...train, 
+        classes: classesWithAdjustedPrices,
+        departureTime: sourceRoute.departureTime,
+        arrivalTime: destRoute.arrivalTime,
+        journeyDistance: `${journeyDist} km`
+      };
+    });
+
+    if (results.length > 0) {
+      return results;
     }
 
     // IF NO TRAINS FOUND -> RETURN DEBUG DATA

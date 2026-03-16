@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { PrismaClient, Role } from '@prisma/client';
+import { PrismaClient, Role, TrainClassType } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
@@ -99,11 +99,11 @@ async function main() {
       arrivalTime: '10:45',
       classes: {
         create: [
-          { type: 'SLEEPER', capacity: 60, price: 950 },
-          { type: 'AC_3_ECONOMY', capacity: 40, price: 1850 },
-          { type: 'AC_3_TIER', capacity: 40, price: 1950 },
-          { type: 'AC_2_TIER', capacity: 20, price: 2850 },
-          { type: 'AC_FIRST_CLASS', capacity: 10, price: 4500 },
+          { type: TrainClassType.SLEEPER, capacity: 60, price: 950 },
+          { type: TrainClassType.AC_3_ECONOMY, capacity: 40, price: 1850 },
+          { type: TrainClassType.AC_3_TIER, capacity: 40, price: 1950 },
+          { type: TrainClassType.AC_2_TIER, capacity: 20, price: 2850 },
+          { type: TrainClassType.AC_FIRST_CLASS, capacity: 10, price: 4500 },
         ]
       }
     }
@@ -150,7 +150,7 @@ async function main() {
     { code: 'RNY', arr: '20:50', dep: '20:55', dur: '5min', dist: '3065 km', platform: '-', day: 4 },
     { code: 'KYQ', arr: '22:40', dep: '22:42', dur: '2min', dist: '3106 km', platform: '-', day: 4 },
     { code: 'GHY', arr: '22:55', dep: '23:10', dur: '15min', dist: '3112 km', platform: '-', day: 4 },
-    { code: 'HJI', arr: '01:20', arr_real: '01:20', dep: '01:22', dur: '2min', dist: '3248 km', platform: '-', day: 4 },
+    { code: 'HJI', arr: '01:20', dep: '01:22', dur: '2min', dist: '3248 km', platform: '-', day: 4 },
     { code: 'LMG', arr: '02:30', dep: '02:40', dur: '10min', dist: '3293 km', platform: '-', day: 4 },
     { code: 'MBG', arr: '04:05', dep: '04:07', dur: '2min', dist: '3357 km', platform: '-', day: 4 },
     { code: 'NHLG', arr: '05:20', dep: '05:25', dur: '5min', dist: '3391 km', platform: '-', day: 4 },
