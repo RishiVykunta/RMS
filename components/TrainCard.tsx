@@ -12,9 +12,20 @@ export default function TrainCard({ train, date }: { train: any; date: string })
         {/* Train Info Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="flex-1">
-            <div className="flex items-center space-x-3 text-indigo-700 font-extrabold text-xl">
-              <span className="bg-indigo-50 px-3 py-1 rounded-lg text-sm">{train.trainNumber}</span>
-              <span>{train.trainName}</span>
+            <div className="flex items-center justify-between text-indigo-700 font-extrabold text-xl">
+              <div className="flex items-center space-x-3">
+                <span className="bg-indigo-50 px-3 py-1 rounded-lg text-sm">{train.trainNumber}</span>
+                <span>{train.trainName}</span>
+              </div>
+              <button 
+                onClick={() => setShowSchedule(!showSchedule)}
+                className="text-[11px] text-indigo-600 font-bold hover:underline uppercase tracking-widest flex items-center gap-1 bg-indigo-50/50 px-3 py-1.5 rounded-lg border border-indigo-100 transition-colors hover:bg-indigo-100"
+              >
+                {showSchedule ? 'Hide Schedule' : 'View Schedule'}
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 transition-transform ${showSchedule ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
             
             <div className="mt-6 flex items-center justify-between max-w-2xl">
@@ -33,15 +44,9 @@ export default function TrainCard({ train, date }: { train: any; date: string })
                   </div>
                   <div className="h-0.5 flex-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
                 </div>
-                <button 
-                  onClick={() => setShowSchedule(!showSchedule)}
-                  className="text-[11px] text-indigo-600 font-bold mt-2 hover:underline uppercase tracking-widest flex items-center gap-1"
-                >
-                  {showSchedule ? 'Hide Schedule' : 'View Schedule'}
-                  <svg xmlns="http://www.w3.org/2000/svg" className={`h-3 w-3 transition-transform ${showSchedule ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
+                <div className="text-[10px] text-gray-400 font-black mt-2 uppercase tracking-widest bg-gray-50 px-2 py-0.5 rounded border border-gray-100">
+                  {train.journeyDuration}
+                </div>
               </div>
 
               <div className="flex flex-col items-end">

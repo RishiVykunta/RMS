@@ -106,6 +106,21 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
         };
       });
 
+      // Calculate Duration
+      const getMinutes = (timeStr: string) => {
+        const [h, m] = timeStr.split(':').map(Number);
+        return h * 60 + m;
+      };
+      
+      const startMinutes = getMinutes(sourceRoute.departureTime);
+      let endMinutes = getMinutes(destRoute.arrivalTime);
+      const dayDiff = destRoute.day - sourceRoute.day;
+      
+      const totalMinutes = (endMinutes + (dayDiff * 24 * 60)) - startMinutes;
+      const h = Math.floor(totalMinutes / 60);
+      const m = totalMinutes % 60;
+      const journeyDuration = `${h}h ${m}m`;
+
       return { 
         ...train, 
         classes: classesWithAdjustedPrices,
@@ -113,7 +128,8 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
         destinationStation: dCode,
         departureTime: sourceRoute.departureTime,
         arrivalTime: destRoute.arrivalTime,
-        journeyDistance: `${journeyDist} km`
+        journeyDistance: `${journeyDist} km`,
+        journeyDuration
       };
     });
 
