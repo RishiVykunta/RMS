@@ -319,25 +319,33 @@ export default function Home() {
       <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="text-center group">
-              <div className="w-20 h-20 rounded-[2rem] bg-indigo-50 text-indigo-500 flex items-center justify-center text-4xl mb-8 mx-auto group-hover:bg-indigo-500 group-hover:text-white transition-all duration-500 shadow-xl shadow-indigo-100">
-                🎫
+            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
+              <div className="w-20 h-20 rounded-[2rem] bg-indigo-50 text-indigo-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-indigo-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-indigo-100 group-hover:shadow-indigo-200">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+                </svg>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4">Easy Booking</h3>
+              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Easy Booking</h3>
               <p className="text-gray-500 leading-relaxed font-medium">Book your train tickets in just a few clicks with our intuitive and powerful platform.</p>
             </div>
-            <div className="text-center group">
-              <div className="w-20 h-20 rounded-[2rem] bg-brand/5 text-brand flex items-center justify-center text-4xl mb-8 mx-auto group-hover:bg-brand group-hover:text-white transition-all duration-500 shadow-xl shadow-brand/10">
-                ⚡
+            
+            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
+              <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 text-emerald-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-emerald-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-emerald-100 group-hover:shadow-emerald-200">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4">Instant PNR</h3>
+              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Instant PNR</h3>
               <p className="text-gray-500 leading-relaxed font-medium">Get your PNR number and confirmation instantly after your transaction is complete.</p>
             </div>
-            <div className="text-center group">
-              <div className="w-20 h-20 rounded-[2rem] bg-green-50 text-green-500 flex items-center justify-center text-4xl mb-8 mx-auto group-hover:bg-green-500 group-hover:text-white transition-all duration-500 shadow-xl shadow-green-100">
-                🔒
+            
+            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
+              <div className="w-20 h-20 rounded-[2rem] bg-blue-50 text-blue-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-blue-100 group-hover:shadow-blue-200">
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.034L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-.382-3.032z" />
+                </svg>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4">Secure Payments</h3>
+              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Secure Payments</h3>
               <p className="text-gray-500 leading-relaxed font-medium">Your data and payments are protected with state-of-the-art encryption and security.</p>
             </div>
           </div>
