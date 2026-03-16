@@ -112,7 +112,7 @@ async function main() {
   const stops = [
     { code: 'CBE', arr: 'STARTS', dep: '16:30', dur: '-', dist: '0', platform: '01', day: 1 },
     { code: 'TUP', arr: '17:10', dep: '17:12', dur: '2min', dist: '51 km', platform: '02', day: 1 },
-    { code: 'EDE', arr: '17:50', dep: '17:55', dur: '5min', dist: '101 km', platform: '0', day: 1 },
+    { code: 'EDE', arr: '17:50', dep: '17:55', dur: '5min', dist: '101 km', platform: '03', day: 1 },
     { code: 'SA', arr: '18:47', dep: '18:50', dur: '3min', dist: '164 km', platform: '01', day: 1 },
     { code: 'JTJ', arr: '20:33', dep: '20:35', dur: '2min', dist: '284 km', platform: '02', day: 1 },
     { code: 'KPD', arr: '21:40', dep: '21:55', dur: '15min', dist: '367 km', platform: '03', day: 1 },
