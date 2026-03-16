@@ -16,7 +16,7 @@ export default function Navbar({ user }: { user: any }) {
   }, []);
 
   const navLinks = [
-    { name: 'Trains', href: '/' },
+    { name: 'Trains', href: '/#booking-area' },
     { name: 'PNR Status', href: '/pnr-status' },
     { name: 'Running Status', href: '/running-status' },
     { name: 'Seat Availability', href: '/seat-availability' },
