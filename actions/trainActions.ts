@@ -162,3 +162,113 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
     return [];
   }
 }
+
+export async function getRunningStatus(trainNumber: string) {
+  const train = await prisma.train.findUnique({
+    where: { trainNumber },
+    include: {
+      routes: {
+        include: { station: true },
+        orderBy: { stopNumber: 'asc' },
+      },
+    },
+  });
+
+  if (!train) return null;
+
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const getMinutes = (timeStr: string) => {
+    if (timeStr === 'STARTS' || timeStr === 'ENDS') return null;
+    const [h, m] = timeStr.split(':').map(Number);
+    return h * 60 + m;
+  };
+
+  let lastDeparted = train.routes[0];
+  let nextStation = train.routes[1];
+
+  for (let i = 0; i < train.routes.length; i++) {
+    const route = train.routes[i];
+    const depMin = getMinutes(route.departureTime);
+    
+    if (depMin !== null && currentMinutes > depMin) {
+      lastDeparted = route;
+      nextStation = train.routes[i + 1] || route;
+    }
+  }
+
+  return {
+    trainName: train.trainName,
+    lastDeparted: lastDeparted.station.stationName,
+    nextStation: nextStation.station.stationName,
+    expectedArrival: nextStation.arrivalTime,
+    status: lastDeparted === nextStation ? 'Arrived at Destination' : `Departed ${lastDeparted.station.stationName}`,
+  };
+}
+
+export async function getSeatAvailability(trainNumber: string, trainClassType: string, date: string) {
+  const travelDate = new Date(date);
+  const train = await prisma.train.findUnique({
+    where: { trainNumber },
+    include: {
+      classes: {
+        where: { type: trainClassType as any },
+      },
+      bookings: {
+        where: {
+          travelDate,
+          trainClass: { type: trainClassType as any },
+          bookingStatus: 'CONFIRMED',
+        },
+        include: { _count: { select: { passengers: true } } },
+      },
+    },
+  });
+
+  if (!train || train.classes.length === 0) return null;
+
+  const trainClass = train.classes[0];
+  const bookedSeats = train.bookings.reduce((sum, b) => sum + b._count.passengers, 0);
+  const available = trainClass.capacity - bookedSeats;
+
+  return {
+    trainName: train.trainName,
+    classType: trainClassType,
+    available,
+    total: trainClass.capacity,
+  };
+}
+
+export async function getTrainSchedule(trainNumber: string) {
+  return await prisma.train.findUnique({
+    where: { trainNumber },
+    include: {
+      routes: {
+        include: { station: true },
+        orderBy: { stopNumber: 'asc' },
+      },
+    },
+  });
+}
+
+export async function getPlatformLocator(trainNumber: string, stationCode: string) {
+  const route = await prisma.route.findFirst({
+    where: {
+      train: { trainNumber },
+      station: { stationCode: stationCode.toUpperCase() },
+    },
+    include: {
+      train: true,
+      station: true,
+    },
+  });
+
+  if (!route) return null;
+
+  return {
+    trainName: route.train.trainName,
+    stationName: route.station.stationName,
+    platform: route.platform || 'Not Assigned',
+  };
+}

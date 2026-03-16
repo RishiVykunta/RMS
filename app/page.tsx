@@ -170,19 +170,30 @@ export default function Home() {
       <section className="bg-gray-50 py-24 -mt-16 relative z-10 rounded-t-[5rem]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-6">
-            {quickTools.map((tool) => (
-              <Link 
-                href={tool.title === 'PNR Status' ? '/pnr-status' : '#'} 
-                key={tool.title} 
-                className="bg-white p-6 rounded-[2rem] shadow-premium shadow-hover cursor-pointer border border-transparent hover:border-brand/10 group"
-              >
-                <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
-                  {tool.icon}
-                </div>
-                <h3 className="font-bold text-gray-900 text-sm mb-2">{tool.title}</h3>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{tool.desc}</p>
-              </Link>
-            ))}
+            {quickTools.map((tool) => {
+              let href = '#';
+              switch (tool.title) {
+                case 'Running Status': href = '/running-status'; break;
+                case 'PNR Status': href = '/pnr-status'; break;
+                case 'Seat Availability': href = '/seat-availability'; break;
+                case 'Train Schedule': href = '/train-schedule'; break;
+                case 'Platform Locator': href = '/platform-locator'; break;
+                case 'Tatkal Guide': href = '/tatkal-guide'; break;
+              }
+              return (
+                <Link 
+                  href={href} 
+                  key={tool.title} 
+                  className="bg-white p-6 rounded-[2rem] shadow-premium shadow-hover cursor-pointer border border-transparent hover:border-brand/10 group"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                    {tool.icon}
+                  </div>
+                  <h3 className="font-bold text-gray-900 text-sm mb-2">{tool.title}</h3>
+                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{tool.desc}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
