@@ -33,12 +33,14 @@ function BookingContent() {
     setLoading(true);
     try {
       const result = await createBooking(trainId, classId, date, passengers as any);
-      if (result?.pnr) {
+      if (result.success && result.pnr) {
         window.location.href = `/ticket/${result.pnr}`;
+      } else {
+        alert(result.error || 'Booking failed. Please try again.');
       }
     } catch (error) {
-      console.error(error);
-      alert('Booking failed. Please try again.');
+      console.error('Submission error:', error);
+      alert('A critical error occurred. Please refresh the page.');
     } finally {
       setLoading(false);
     }
