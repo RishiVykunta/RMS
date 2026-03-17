@@ -81,10 +81,10 @@ export async function createBooking(trainId: string, trainClassId: string, trave
       },
     });
 
-    return newBooking;
+    return { pnr: newBooking.pnrNumber };
   });
 
-  redirect(`/ticket/${booking.pnrNumber}`);
+  return booking;
 }
 
 export async function getBookingByPNR(pnr: string) {

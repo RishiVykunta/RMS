@@ -32,7 +32,10 @@ function BookingContent() {
     if (!trainId || !classId || !date) return;
     setLoading(true);
     try {
-      await createBooking(trainId, classId, date, passengers as any);
+      const result = await createBooking(trainId, classId, date, passengers as any);
+      if (result?.pnr) {
+        window.location.href = `/ticket/${result.pnr}`;
+      }
     } catch (error) {
       console.error(error);
       alert('Booking failed. Please try again.');
@@ -70,8 +73,8 @@ function BookingContent() {
                   type="text" 
                   value={passenger.name}
                   onChange={(e) => updatePassenger(index, 'name', e.target.value)}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
-                  placeholder="e.g. John Doe"
+                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
+                  placeholder="Full Name"
                   required
                 />
               </div>
