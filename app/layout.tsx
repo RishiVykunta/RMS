@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import AuthProvider from "@/components/AuthProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getSession } from "@/lib/auth";
@@ -32,13 +32,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col pt-20`}>
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
+        <AuthProvider>
           <Navbar user={user} />
           <main className="flex-grow">
             {children}
           </main>
           <Footer />
-        </GoogleOAuthProvider>
+        </AuthProvider>
       </body>
     </html>
   );
