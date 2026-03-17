@@ -17,6 +17,7 @@ export default function Navbar({ user }: { user: any }) {
 
   const navLinks = [
     { name: 'Trains', href: '/#top' },
+    { name: 'My Bookings', href: '/dashboard', authRequired: true },
     { name: 'PNR Status', href: '/pnr-status' },
     { name: 'Running Status', href: '/running-status' },
     { name: 'Seat Availability', href: '/seat-availability' },
@@ -33,7 +34,7 @@ export default function Navbar({ user }: { user: any }) {
             </Link>
             
             <div className="hidden lg:flex items-center space-x-1">
-              {navLinks.map((link) => (
+              {navLinks.filter(link => !link.authRequired || user).map((link) => (
                 <Link 
                   key={link.name} 
                   href={link.href} 
