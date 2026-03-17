@@ -295,7 +295,7 @@ export default function Home() {
 
       {/* Popular Trains Section */}
       {/* Popular Trains Section */}
-      <section className="py-24 bg-[#f8fafc] border-y border-gray-100">
+      <section className="py-24 bg-[#f1f5f9] border-y border-slate-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
