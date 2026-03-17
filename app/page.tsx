@@ -102,7 +102,7 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/hero-bg.png" 
+            src="https://res.cloudinary.com/dqcxekzxn/image/upload/v1773766411/Screenshot_2026-03-17_221336_LE_upscale_prime_ex6hky.jpg" 
             alt="Indian Railways" 
             className="w-full h-full object-cover"
           />
@@ -294,47 +294,74 @@ export default function Home() {
       </section>
 
       {/* Popular Trains Section */}
-      {/* Popular Trains Section */}
-      <section className="py-24 bg-[#f1f5f9] border-y border-slate-200/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
+      <section className="py-24 bg-[#1a3a44] relative overflow-hidden rounded-[3rem] mx-4 md:mx-8 mb-24">
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 0 L100 100 M100 0 L0 100" stroke="white" strokeWidth="0.1" fill="none" />
+          </svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
             <div>
-              <div className="h-1.5 w-12 bg-brand rounded-full mb-4" />
-              <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Popular Routes</h2>
-              <p className="text-gray-500 font-medium font-inter">Hand-picked destinations for your next journey</p>
+              <div className="h-1.5 w-12 bg-emerald-400 rounded-full mb-6" />
+              <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight">Popular Routes</h2>
+              <p className="text-emerald-100/70 font-medium text-lg max-w-md">Hand-picked destinations for your next journey</p>
             </div>
-            <button className="text-brand font-bold hover:gap-3 transition-all flex items-center gap-2">
-              <span>View All Routes</span>
-              <span className="text-xl">→</span>
+            <button className="mt-8 md:mt-0 text-emerald-300 font-bold hover:text-white transition-all flex items-center gap-3 group">
+              <span className="text-sm uppercase tracking-widest font-black">View All Routes</span>
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {popularTrains.map((train) => (
-              <div key={train.number} className="bg-white p-8 rounded-[2.5rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100/80 relative group hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1">
-                <div className="absolute top-0 right-0 bg-brand/5 text-brand px-6 py-2.5 rounded-bl-[2.5rem] text-[10px] font-black uppercase tracking-widest border-l border-b border-brand/10">
+              <div key={train.number} className="bg-[#f0e7d8] p-10 rounded-[3rem] shadow-2xl relative group hover:scale-[1.02] transition-all duration-500 overflow-hidden border border-[#d8cdb8]">
+                {/* Vintage Train Watermark Overlay */}
+                <div className="absolute -bottom-4 -right-8 opacity-[0.08] pointer-events-none select-none transform rotate-[-5deg] group-hover:rotate-0 transition-transform duration-700">
+                  <span className="text-[12rem] leading-none">🚄</span>
+                </div>
+                
+                <div className="absolute top-0 right-0 p-8 text-[10px] font-black text-[#8b7e6a] uppercase tracking-[0.2em] opacity-50">
                   #{train.number}
                 </div>
-                <h3 className="text-2xl font-black text-gray-900 mb-2">{train.name}</h3>
-                <div className="flex items-center gap-3 text-brand font-black text-sm mb-6 pb-6 border-b border-gray-100/50">
+                
+                <h3 className="text-3xl font-black text-[#2d2a26] mb-4 tracking-tight drop-shadow-sm">{train.name}</h3>
+                
+                <div className="flex items-center gap-4 text-emerald-700 font-black text-sm mb-10 pb-4 border-b border-[#2d2a26]/10">
                   <span>{train.route.split(' → ')[0]}</span>
-                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  <div className="flex items-center gap-1 opacity-40">
+                    <div className="w-1.5 h-1.5 rounded-full bg-current" />
+                    <div className="w-8 h-[2px] bg-current" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-current shadow-[0_0_10px_rgba(4,120,87,0.5)]" />
+                  </div>
                   <span>{train.route.split(' → ')[1]}</span>
                 </div>
-                <div className="flex justify-between items-center text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-2">
-                  <span>Departure</span>
+                
+                <div className="flex justify-between items-center text-[#8b7e6a] text-[10px] font-black uppercase tracking-[0.2em] mb-3">
+                  <span className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    Departure
+                  </span>
                   <span>Arrival</span>
                 </div>
-                <div className="flex justify-between items-center text-gray-900 font-black text-xl">
+                
+                <div className="flex justify-between items-center text-[#2d2a26] font-black text-3xl tracking-tighter">
                   <span>{train.time.split(' - ')[0]}</span>
-                  <div className="flex-grow mx-6 h-[1.5px] bg-gray-100/80 relative overflow-hidden rounded-full">
-                    <div className="absolute inset-0 bg-brand/20 w-1/2 group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="flex-grow mx-6 h-[1px] bg-[#2d2a26]/10 relative">
+                    <div className="absolute top-1/2 left-0 w-1/3 h-[2px] bg-emerald-500/50 -translate-y-1/2 rounded-full group-hover:translate-x-[200%] transition-transform duration-[1500ms] cubic-bezier-in-out" />
                   </div>
                   <span>{train.time.split(' - ')[1]}</span>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+        
+        {/* Abstract Corner Element */}
+        <div className="absolute bottom-4 right-8 text-emerald-400 opacity-30 select-none">
+          <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L14.4 9.6H22L15.8 14.4L18.2 22L12 17.2L5.8 22L8.2 14.4L2 9.6H9.6L12 2Z" /></svg>
         </div>
       </section>
 
