@@ -74,7 +74,7 @@ export async function createBooking(trainId: string, trainClassId: string, trave
             trainClassId,
             travelDate: travelDateObj,
           },
-          seatStatus: 'WAITING'
+          seatStatus: 'WAITING' as any
         }
       });
 
@@ -116,7 +116,7 @@ export async function createBooking(trainId: string, trainClassId: string, trave
           travelDate: travelDateObj,
           bookingStatus: finalBookingStatus as any,
           passengers: {
-            create: dataForPassengers,
+            create: dataForPassengers as any,
           },
         },
       });
