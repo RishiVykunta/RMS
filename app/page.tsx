@@ -425,14 +425,14 @@ export default function Home() {
 
           {/* Bottom Action Buttons */}
           <div className="mt-20 flex flex-wrap justify-center gap-6">
-            <button className="bg-[#003366] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-xl hover:shadow-navy/40 hover:-translate-y-1 transition-all flex items-center gap-4 group">
+            <a href="#top" className="bg-[#003366] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-xl hover:shadow-navy/40 hover:-translate-y-1 transition-all flex items-center gap-4 group">
               <span className="bg-white/20 p-2 rounded-lg group-hover:bg-white group-hover:text-[#003366] transition-colors">🚄</span>
               Book Now
-            </button>
-            <button className="bg-white/80 backdrop-blur-md text-[#2d2a26] border border-[#d4c6a9]/40 px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-4 group">
+            </a>
+            <a href="#popular-routes" className="bg-white/80 backdrop-blur-md text-[#2d2a26] border border-[#d4c6a9]/40 px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-4 group">
               <span className="grayscale group-hover:grayscale-0 transition-all">📍</span>
               View Routes
-            </button>
+            </a>
           </div>
 
           <div className="w-full h-px bg-[#d4c6a9]/50 mt-16 flex justify-end">
