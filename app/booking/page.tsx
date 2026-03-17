@@ -32,7 +32,7 @@ function BookingContent() {
     if (!trainId || !classId || !date) return;
     setLoading(true);
     try {
-      const result = await createBooking(trainId, classId, date, passengers as any);
+      const result = await createBooking(trainId, classId, date, passengers as any) as { success: boolean; pnr?: string; error?: string };
       if (result.success && result.pnr) {
         window.location.href = `/ticket/${result.pnr}`;
       } else {
