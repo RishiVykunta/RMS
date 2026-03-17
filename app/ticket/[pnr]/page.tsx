@@ -51,7 +51,12 @@ export default async function TicketPage({
           </div>
           <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
             <span className="text-[10px] font-bold text-gray-400 uppercase">Status</span>
-            <p className="text-lg font-bold text-green-600 uppercase">{booking.bookingStatus}</p>
+            <p className={`text-lg font-bold uppercase ${
+              (booking.bookingStatus as any) === 'CONFIRMED' ? 'text-green-600' : 
+              (booking.bookingStatus as any) === 'WAITING' ? 'text-orange-500' : 'text-red-500'
+            }`}>
+              {booking.bookingStatus}
+            </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
             <span className="text-[10px] font-bold text-gray-400 uppercase">Total Passengers</span>
@@ -75,9 +80,15 @@ export default async function TicketPage({
                 <tr key={p.id} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                   <td className="px-6 py-4 font-bold text-gray-800">{p.name}</td>
                   <td className="px-6 py-4 text-gray-600">{p.age} / {p.gender}</td>
-                  <td className="px-6 py-4 font-mono font-bold text-indigo-600 uppercase">Coach S1 - {p.seatNumber}</td>
+                  <td className="px-6 py-4 font-mono font-bold text-indigo-600 uppercase">
+                    {(p as any).seatStatus === 'CONFIRMED' ? `Coach S1 - ${p.seatNumber}` : `WL - ${(p as any).waitingListNumber}`}
+                  </td>
                   <td className="px-6 py-4">
-                    <span className="bg-green-100 text-green-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase">
+                    <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase ${
+                        (p as any).seatStatus === 'CONFIRMED' ? 'bg-green-100 text-green-700' : 
+                        (p as any).seatStatus === 'WAITING' ? 'bg-orange-100 text-orange-700' : 
+                        'bg-red-100 text-red-700'
+                    }`}>
                       {p.seatStatus}
                     </span>
                   </td>

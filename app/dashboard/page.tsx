@@ -64,8 +64,10 @@ export default async function DashboardPage() {
                     </td>
                     <td className="px-8 py-6 text-center">
                       <span className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide border ${
-                        booking.bookingStatus === 'CONFIRMED' 
+                        (booking.bookingStatus as any) === 'CONFIRMED' 
                           ? 'bg-green-50 text-green-700 border-green-100' 
+                          : (booking.bookingStatus as any) === 'WAITING'
+                          ? 'bg-orange-50 text-orange-700 border-orange-100'
                           : 'bg-red-50 text-red-700 border-red-100'
                       }`}>
                         {booking.bookingStatus}

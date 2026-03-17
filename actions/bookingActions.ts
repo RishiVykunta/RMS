@@ -44,13 +44,67 @@ export async function createBooking(trainId: string, trainClassId: string, trave
 
       if (!pnrNumber) throw new Error('Failed to generate unique PNR');
 
-      // 1. Verify availability
+      // 1. Verify availability and count existing bookings
       const trainClass = await tx.trainClass.findUnique({
         where: { id: trainClassId },
         select: { capacity: true }
       });
 
       if (!trainClass) throw new Error('Invalid train class');
+      const capacity = trainClass.capacity || 72;
+
+      // Count ALL confirmed passengers for this specific Train, Class, and Date
+      const confirmedCount = await tx.passenger.count({
+        where: {
+          booking: {
+            trainId,
+            trainClassId,
+            travelDate: travelDateObj,
+            bookingStatus: 'CONFIRMED',
+          },
+          seatStatus: 'CONFIRMED'
+        }
+      });
+
+      // Count ALL waiting list passengers for this specific Train, Class, and Date
+      const waitingListCount = await tx.passenger.count({
+        where: {
+          booking: {
+            trainId,
+            trainClassId,
+            travelDate: travelDateObj,
+          },
+          seatStatus: 'WAITING'
+        }
+      });
+
+      // Calculate how many can be confirmed and how many must wait
+      const dataForPassengers = passengers.map((p, index) => {
+        const currentTotalIdx = confirmedCount + index;
+        if (currentTotalIdx < capacity) {
+          return {
+            name: p.name,
+            age: parseInt(p.age.toString()) || 0,
+            gender: p.gender,
+            seatNumber: currentTotalIdx + 1, // Sequential seat number
+            seatStatus: 'CONFIRMED' as const,
+          };
+        } else {
+          // Calculate WL number based on total current waiting list
+          const wlIndex = (waitingListCount) + (currentTotalIdx - capacity) + 1;
+          return {
+            name: p.name,
+            age: parseInt(p.age.toString()) || 0,
+            gender: p.gender,
+            seatNumber: null,
+            waitingListNumber: wlIndex,
+            seatStatus: 'WAITING' as const,
+          };
+        }
+      });
+
+      const isPartiallyWaiting = dataForPassengers.some(p => p.seatStatus === 'WAITING');
+      const finalBookingStatus = isPartiallyWaiting ? 'WAITING' : 'CONFIRMED';
       
       // 2. Create the booking
       const newBooking = await tx.booking.create({
@@ -60,13 +114,9 @@ export async function createBooking(trainId: string, trainClassId: string, trave
           trainId,
           trainClassId,
           travelDate: travelDateObj,
+          bookingStatus: finalBookingStatus as any,
           passengers: {
-            create: passengers.map((p) => ({
-              name: p.name,
-              age: parseInt(p.age.toString()) || 0,
-              gender: p.gender,
-              seatNumber: Math.floor(Math.random() * (trainClass.capacity || 72)) + 1,
-            })),
+            create: dataForPassengers,
           },
         },
       });

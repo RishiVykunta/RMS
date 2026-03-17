@@ -15,11 +15,13 @@ enum Role {
 enum BookingStatus {
   CONFIRMED
   CANCELLED
+  WAITING
 }
 
 enum SeatStatus {
   CONFIRMED
   CANCELLED
+  WAITING
 }
 
 enum TrainClassType {
@@ -126,13 +128,14 @@ model Booking {
 }
 
 model Passenger {
-  id          String     @id @default(uuid())
-  bookingId   String
-  name        String
-  age         Int
-  gender      String
-  seatNumber  Int
-  seatStatus  SeatStatus @default(CONFIRMED)
+  id                 String     @id @default(uuid())
+  bookingId          String
+  name               String
+  age                Int
+  gender             String
+  seatNumber         Int?       // Null if WAITING
+  waitingListNumber  Int?       // WL position if WAITING
+  seatStatus         SeatStatus @default(CONFIRMED)
 
   booking     Booking    @relation(fields: [bookingId], references: [id], onDelete: Cascade)
 }
