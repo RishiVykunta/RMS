@@ -1,5 +1,6 @@
 import { getBookingByPNR } from '@/actions/bookingActions';
 import Link from 'next/link';
+import PrintButton from '@/components/PrintButton';
 
 export default async function TicketPage({
   params,
@@ -87,9 +88,7 @@ export default async function TicketPage({
         </div>
 
         <div className="mt-12 flex items-center justify-center space-x-4 print:hidden">
-          <button onClick={() => window.print()} className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg">
-            Print Ticket 🖨️
-          </button>
+          <PrintButton />
           <a href="/dashboard" className="text-indigo-600 font-bold hover:underline">Go to Dashboard →</a>
         </div>
       </div>
