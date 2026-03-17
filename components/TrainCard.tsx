@@ -99,18 +99,29 @@ export default function TrainCard({ train, date }: { train: any; date: string })
             <Link 
               key={cls.id}
               href={`/booking?trainId=${train.id}&classId=${cls.id}&date=${date}`}
-              className="group border border-gray-100 rounded-xl p-3 hover:border-indigo-300 hover:bg-indigo-50 transition-all cursor-pointer flex flex-col justify-between"
+              className="group border border-gray-100 rounded-2xl p-4 hover:bg-[#003366] hover:border-[#003366] hover:shadow-[0_20px_40px_rgba(0,51,102,0.2)] transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden relative"
             >
-              <div>
-                <span className="block text-[10px] font-black text-gray-400 uppercase tracking-tighter mb-1">{cls.type.replace(/_/g, ' ')}</span>
-                <span className="block text-xl font-black text-gray-900 leading-none">₹{cls.price}</span>
+              {/* Subtle Pattern Hover Overlay */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none transition-opacity duration-500">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0 0 L100 100 M100 0 L0 100" stroke="white" strokeWidth="1" fill="none" />
+                </svg>
               </div>
-              <div className="mt-3 flex items-center justify-between">
-                <span className={`text-[11px] font-bold ${cls.availableSeats > 20 ? 'text-green-600' : cls.availableSeats > 0 ? 'text-orange-600' : 'text-red-600'}`}>
+
+              <div className="relative z-10">
+                <span className="block text-[10px] font-black text-gray-400 group-hover:text-blue-200 uppercase tracking-widest mb-1 transition-colors">{cls.type.replace(/_/g, ' ')}</span>
+                <span className="block text-2xl font-black text-gray-900 group-hover:text-white leading-none transition-colors">₹{cls.price}</span>
+              </div>
+              <div className="mt-4 flex items-center justify-between relative z-10">
+                <span className={`text-[11px] font-black px-2 py-0.5 rounded group-hover:bg-white/20 transition-all ${
+                  cls.availableSeats > 20 ? 'text-green-600 group-hover:text-green-300' : 
+                  cls.availableSeats > 0 ? 'text-orange-600 group-hover:text-orange-300' : 
+                  'text-red-500 group-hover:text-red-300'
+                }`}>
                   {cls.availableSeats > 0 ? `AVL ${cls.availableSeats}` : 'NOT AVAILABLE'}
                 </span>
-                <span className="text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <span className="text-white opacity-0 group-hover:opacity-100 transition-all transform translate-x-1 group-hover:translate-x-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </span>
