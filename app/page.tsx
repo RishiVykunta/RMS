@@ -366,50 +366,77 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 bg-white relative overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-50/50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-
+      <section className="py-32 bg-[#fdfbf3] relative overflow-hidden">
+        {/* Parchment Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.15] pointer-events-none" 
+             style={{ backgroundImage: 'linear-gradient(#d4c6a9 1px, transparent 1px), linear-gradient(90deg, #d4c6a9 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        
+        {/* Decorative Top/Bottom Lines */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-sm font-black text-brand uppercase tracking-[0.3em] mb-4">Why Choose Us</h2>
-            <p className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">The RailConnect Edge</p>
+          <div className="w-full h-px bg-[#d4c6a9]/50 mb-12 flex justify-center items-center">
+            <div className="bg-[#fdfbf3] px-8">
+              <h2 className="text-2xl md:text-3xl font-serif text-[#2d2a26] tracking-[0.15em] uppercase text-center">Our Railway Booking Advantage</h2>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-premium hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-8xl font-black pointer-events-none group-hover:scale-110 transition-transform duration-700">01</div>
-              <div className="w-20 h-20 rounded-[2rem] bg-indigo-50 text-indigo-500 flex items-center justify-center mb-8 group-hover:bg-indigo-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-indigo-100 group-hover:shadow-indigo-200">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
-                </svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Card 01 - Easy Booking */}
+            <div className="group relative p-10 rounded-[3rem] bg-white/90 backdrop-blur-sm border border-[#d4c6a9]/30 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 text-6xl font-black text-[#2d2a26]/10 pointer-events-none group-hover:scale-110 transition-transform">01</div>
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 shadow-inner flex items-center justify-center mb-8 border border-white">
+                <div className="w-16 h-16 rounded-full bg-slate-400 rotate-12 flex items-center justify-center text-white shadow-lg">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" /></svg>
+                </div>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Easy Booking</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Book your train tickets in just a few clicks with our intuitive and powerful platform designed for speed.</p>
+              <h3 className="text-2xl font-black text-[#2d2a26] mb-4">Easy Booking</h3>
+              <p className="text-[#8b7e6a] leading-relaxed font-medium">Book your train tickets in just a few clicks with our intuitive and powerful platform designed for speed.</p>
             </div>
             
-            <div className="group relative p-10 rounded-[3rem] bg-indigo-600 shadow-2xl shadow-indigo-200 hover:shadow-indigo-300 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-[0.1] text-8xl font-black text-white pointer-events-none group-hover:scale-110 transition-transform duration-700">02</div>
-              <div className="w-20 h-20 rounded-[2rem] bg-white/10 text-white flex items-center justify-center mb-8 backdrop-blur-md group-hover:bg-white group-hover:text-indigo-600 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-black/10">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            {/* Card 02 - Instant PNR (Highlighted) */}
+            <div className="group relative p-12 rounded-[3.5rem] bg-[#003366] shadow-[0_30px_60px_-15px_rgba(0,51,102,0.4)] hover:shadow-[0_40px_80px_-15px_rgba(0,51,102,0.5)] transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-[#004080]">
+              <div className="absolute top-0 right-0 p-8 text-7xl font-black text-white/10 pointer-events-none group-hover:scale-110 transition-transform">02</div>
+              {/* Subtle Blue Glow/Pattern */}
+              <div className="absolute inset-0 opacity-20 pointer-events-none">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path d="M0 0 L100 100 M100 0 L0 100" stroke="white" strokeWidth="0.5" fill="none" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black text-white mb-4 tracking-tight">Instant PNR</h3>
-              <p className="text-indigo-100 leading-relaxed font-medium">Get your PNR number and confirmation instantly after your transaction is complete, with real-time sync.</p>
+              <div className="w-24 h-24 rounded-3xl bg-white/20 backdrop-blur-xl flex items-center justify-center mb-10 shadow-2xl border border-white/30 group-hover:bg-white group-hover:scale-110 transition-all duration-500">
+                <svg className="w-12 h-12 text-white group-hover:text-[#003366]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-3xl font-black text-white mb-4">Instant PNR</h3>
+              <p className="text-blue-100/80 leading-relaxed font-medium text-lg">Get your PNR number and confirmation instantly after your transaction is complete, with real-time sync.</p>
             </div>
             
-            <div className="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-premium hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-8xl font-black pointer-events-none group-hover:scale-110 transition-transform duration-700">03</div>
-              <div className="w-20 h-20 rounded-[2rem] bg-blue-50 text-blue-500 flex items-center justify-center mb-8 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-blue-100 group-hover:shadow-blue-200">
-                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.034L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-.382-3.032z" />
-                </svg>
+            {/* Card 03 - Secure Payments */}
+            <div className="group relative p-10 rounded-[3rem] bg-white/90 backdrop-blur-sm border border-[#d4c6a9]/30 shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-2xl transition-all duration-500 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 text-6xl font-black text-[#2d2a26]/10 pointer-events-none group-hover:scale-110 transition-transform">03</div>
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 shadow-inner flex items-center justify-center mb-8 border border-white">
+                <div className="w-16 h-16 rounded-full bg-slate-400 -rotate-12 flex items-center justify-center text-white shadow-lg">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.034L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-.382-3.032z" /></svg>
+                </div>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Secure Payments</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Your data and payments are protected with state-of-the-art encryption and bank-grade security protocols.</p>
+              <h3 className="text-2xl font-black text-[#2d2a26] mb-4">Secure Payments</h3>
+              <p className="text-[#8b7e6a] leading-relaxed font-medium">Your data and payments are protected with state-of-the-art encryption and bank-grade security protocols.</p>
             </div>
+          </div>
+
+          {/* Bottom Action Buttons */}
+          <div className="mt-20 flex flex-wrap justify-center gap-6">
+            <button className="bg-[#003366] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-xl hover:shadow-navy/40 hover:-translate-y-1 transition-all flex items-center gap-4 group">
+              <span className="bg-white/20 p-2 rounded-lg group-hover:bg-white group-hover:text-[#003366] transition-colors">🚄</span>
+              Book Now
+            </button>
+            <button className="bg-white/80 backdrop-blur-md text-[#2d2a26] border border-[#d4c6a9]/40 px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-4 group">
+              <span className="grayscale group-hover:grayscale-0 transition-all">📍</span>
+              View Routes
+            </button>
+          </div>
+
+          <div className="w-full h-px bg-[#d4c6a9]/50 mt-16 flex justify-end">
+            <div className="bg-[#fdfbf3] px-2 text-[#d4c6a9] text-xs font-serif uppercase tracking-widest">✦</div>
           </div>
         </div>
       </section>
