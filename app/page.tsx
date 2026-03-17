@@ -294,34 +294,41 @@ export default function Home() {
       </section>
 
       {/* Popular Trains Section */}
-      <section className="py-24 bg-gray-50">
+      {/* Popular Trains Section */}
+      <section className="py-24 bg-[#fbfbfc] border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
+              <div className="h-1.5 w-12 bg-brand rounded-full mb-4" />
               <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Popular Routes</h2>
-              <p className="text-gray-500 font-medium">Trending destinations this season</p>
+              <p className="text-gray-500 font-medium font-inter">Hand-picked destinations for your next journey</p>
             </div>
-            <button className="text-brand font-bold hover:underline">View All Routes →</button>
+            <button className="text-brand font-bold hover:gap-3 transition-all flex items-center gap-2">
+              <span>View All Routes</span>
+              <span className="text-xl">→</span>
+            </button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {popularTrains.map((train) => (
-              <div key={train.number} className="bg-white p-8 rounded-[2.5rem] shadow-premium shadow-hover border border-gray-100 relative group overflow-hidden">
-                <div className="absolute top-0 right-0 bg-brand/10 text-brand px-4 py-2 rounded-bl-2xl text-[10px] font-black uppercase tracking-widest">
+              <div key={train.number} className="bg-white p-8 rounded-[2.5rem] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] border border-gray-100/80 relative group hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-1">
+                <div className="absolute top-0 right-0 bg-brand/5 text-brand px-6 py-2.5 rounded-bl-[2.5rem] text-[10px] font-black uppercase tracking-widest border-l border-b border-brand/10">
                   #{train.number}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{train.name}</h3>
-                <div className="text-brand font-black text-sm mb-6 pb-6 border-b border-gray-50">
-                  {train.route}
+                <h3 className="text-2xl font-black text-gray-900 mb-2">{train.name}</h3>
+                <div className="flex items-center gap-3 text-brand font-black text-sm mb-6 pb-6 border-b border-gray-100/50">
+                  <span>{train.route.split(' → ')[0]}</span>
+                  <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  <span>{train.route.split(' → ')[1]}</span>
                 </div>
-                <div className="flex justify-between items-center text-gray-400 text-xs font-bold uppercase tracking-widest">
+                <div className="flex justify-between items-center text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-2">
                   <span>Departure</span>
                   <span>Arrival</span>
                 </div>
-                <div className="flex justify-between items-center text-gray-900 font-black text-lg mt-1">
+                <div className="flex justify-between items-center text-gray-900 font-black text-xl">
                   <span>{train.time.split(' - ')[0]}</span>
-                  <div className="flex-grow mx-4 h-[2px] bg-gray-100 relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand text-[10px]">🚄</div>
+                  <div className="flex-grow mx-6 h-[1.5px] bg-gray-100/80 relative overflow-hidden rounded-full">
+                    <div className="absolute inset-0 bg-brand/20 w-1/2 group-hover:translate-x-full transition-transform duration-1000" />
                   </div>
                   <span>{train.time.split(' - ')[1]}</span>
                 </div>
