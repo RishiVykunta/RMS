@@ -49,6 +49,9 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
           where: {
             travelDate: new Date(date),
             bookingStatus: 'CONFIRMED',
+          },
+          include: {
+            passengers: true
           }
         }
       },
@@ -99,10 +102,15 @@ export async function searchTrains(sourceCode: string, destinationCode: string, 
 
         const adjustedPrice = Math.round(journeyDist * costPerKm);
 
+        // Calculate actual available seats for this class on this date
+        const classBookings = (train.bookings || []).filter((b: any) => b.trainClassId === cls.id);
+        const bookedSeats = classBookings.reduce((sum: number, b: any) => sum + (b.passengers?.length || 0), 0);
+        const availableSeats = Math.max(0, cls.capacity - bookedSeats);
+
         return {
           ...cls,
           price: adjustedPrice > 0 ? adjustedPrice : cls.price, // Fallback if distance math fails
-          availableSeats: cls.capacity // Simplified
+          availableSeats: availableSeats
         };
       });
 
