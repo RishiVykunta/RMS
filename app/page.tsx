@@ -97,22 +97,38 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section id="top" className="relative pt-12 pb-32 overflow-hidden bg-white">
-        {/* Background Accent */}
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[800px] h-[800px] bg-brand/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+      {/* Hero Section */}
+      <section id="top" className="relative pt-12 pb-32 overflow-hidden bg-gray-900 border-b border-white/10">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/hero-bg.png" 
+            alt="Indian Railways" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tight mb-6">
-              Where to <span className="text-brand">next?</span>
+          <div className="text-center mb-16 pt-10">
+            <div className="flex items-center justify-center gap-4 mb-6 text-white/80 font-bold tracking-[0.2em] uppercase text-xs">
+              <span>Safety</span>
+              <span className="w-1 h-1 bg-white/30 rounded-full" />
+              <span>Security</span>
+              <span className="w-1 h-1 bg-white/30 rounded-full" />
+              <span>Punctuality</span>
+            </div>
+            <h1 className="text-6xl md:text-8xl font-black text-white tracking-tight mb-6 drop-shadow-2xl">
+              Indian <span className="text-brand">Railways</span>
             </h1>
-            <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto">Book your train tickets with RailConnect — fast, secure, and premium experience guaranteed.</p>
+            <p className="text-xl text-white/90 font-medium max-w-2xl mx-auto drop-shadow-lg">
+              Heartily enjoy every journey through our boundless hospitality. Through Indian railways, The Lifeline of the Nation.
+            </p>
           </div>
 
           {/* Elevated Booking Card */}
-          <div id="booking-area" className="max-w-6xl mx-auto">
-            <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.08)] border border-white p-3 md:p-4">
+          <div id="booking-area" className="max-w-6xl mx-auto transform translate-y-8">
+            <div className="bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] border border-white/20 p-3 md:p-4">
               <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-5 gap-2 cursor-default">
                 
                 {/* From Station */}
