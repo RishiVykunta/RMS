@@ -366,37 +366,49 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
-              <div className="w-20 h-20 rounded-[2rem] bg-indigo-50 text-indigo-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-indigo-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-indigo-100 group-hover:shadow-indigo-200">
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-50/50 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-sm font-black text-brand uppercase tracking-[0.3em] mb-4">Why Choose Us</h2>
+            <p className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">The RailConnect Edge</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-premium hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-8xl font-black pointer-events-none group-hover:scale-110 transition-transform duration-700">01</div>
+              <div className="w-20 h-20 rounded-[2rem] bg-indigo-50 text-indigo-500 flex items-center justify-center mb-8 group-hover:bg-indigo-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-indigo-100 group-hover:shadow-indigo-200">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Easy Booking</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Book your train tickets in just a few clicks with our intuitive and powerful platform.</p>
+              <p className="text-gray-500 leading-relaxed font-medium">Book your train tickets in just a few clicks with our intuitive and powerful platform designed for speed.</p>
             </div>
             
-            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
-              <div className="w-20 h-20 rounded-[2rem] bg-emerald-50 text-emerald-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-emerald-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-emerald-100 group-hover:shadow-emerald-200">
+            <div className="group relative p-10 rounded-[3rem] bg-indigo-600 shadow-2xl shadow-indigo-200 hover:shadow-indigo-300 transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-[0.1] text-8xl font-black text-white pointer-events-none group-hover:scale-110 transition-transform duration-700">02</div>
+              <div className="w-20 h-20 rounded-[2rem] bg-white/10 text-white flex items-center justify-center mb-8 backdrop-blur-md group-hover:bg-white group-hover:text-indigo-600 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-black/10">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Instant PNR</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Get your PNR number and confirmation instantly after your transaction is complete.</p>
+              <h3 className="text-2xl font-black text-white mb-4 tracking-tight">Instant PNR</h3>
+              <p className="text-indigo-100 leading-relaxed font-medium">Get your PNR number and confirmation instantly after your transaction is complete, with real-time sync.</p>
             </div>
             
-            <div className="text-center group p-8 rounded-[2.5rem] hover:bg-gray-50/50 transition-all duration-500">
-              <div className="w-20 h-20 rounded-[2rem] bg-blue-50 text-blue-500 flex items-center justify-center mb-8 mx-auto group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-blue-100 group-hover:shadow-blue-200">
+            <div className="group relative p-10 rounded-[3rem] bg-white border border-gray-100 shadow-premium hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-8xl font-black pointer-events-none group-hover:scale-110 transition-transform duration-700">03</div>
+              <div className="w-20 h-20 rounded-[2rem] bg-blue-50 text-blue-500 flex items-center justify-center mb-8 group-hover:bg-blue-500 group-hover:text-white group-hover:scale-110 transition-all duration-500 shadow-xl shadow-blue-100 group-hover:shadow-blue-200">
                 <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.034L3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622l-.382-3.032z" />
                 </svg>
               </div>
               <h3 className="text-2xl font-black text-gray-900 mb-4 tracking-tight">Secure Payments</h3>
-              <p className="text-gray-500 leading-relaxed font-medium">Your data and payments are protected with state-of-the-art encryption and security.</p>
+              <p className="text-gray-500 leading-relaxed font-medium">Your data and payments are protected with state-of-the-art encryption and bank-grade security protocols.</p>
             </div>
           </div>
         </div>
