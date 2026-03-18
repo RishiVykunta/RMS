@@ -1,5 +1,7 @@
 # 🚆 Railway Management System (RMS)
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-rms--sable.vercel.app-success?style=for-the-badge&logo=vercel)](https://rms-sable.vercel.app/)
+
 ![Next.js](https://img.shields.io/badge/Next.js-16.1.6-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19.2.3-blue?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)
